@@ -2,12 +2,13 @@
 import './App.css'
 import Header from './Header'
 import Menu from './components/MenuComponent'
+import { DISHES } from './shared/Dishes'
 
 function App () {
   return (
     <div className="App">
       <Header />
-      <Menu />
+      <Menu dishes={DISHES}/>
     </div>
   )
 }

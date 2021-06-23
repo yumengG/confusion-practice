@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
-.imagefile {
+.menuCard {
+  cursor: pointer;
 }
 
