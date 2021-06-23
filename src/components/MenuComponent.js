@@ -1,59 +1,35 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import { Media } from 'reactstrap'
+import {
+  Media, Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap'
 import Dish from './Dish'
+import RenderSelectedDish from './RenderSelectedDish'
 
-const MenuComponent = () => {
-  const [dishes, setDishes] = useState(
-    [
-      {
-        id: 0,
-        name: 'Uthappizza',
-        image: 'assets/images/uthappizza.png',
-        category: 'mains',
-        label: 'Hot',
-        price: '4.99',
-        description: 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.'
-      },
-      {
-        id: 1,
-        name: 'Zucchipakoda',
-        image: 'assets/images/zucchipakoda.png',
-        category: 'appetizer',
-        label: '',
-        price: '1.99',
-        description: 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce'
-      },
-      {
-        id: 2,
-        name: 'Vadonut',
-        image: 'assets/images/vadonut.png',
-        category: 'appetizer',
-        label: 'New',
-        price: '1.99',
-        description: 'A quintessential ConFusion experience, is it a vada or is it a donut?'
-      },
-      {
-        id: 3,
-        name: 'ElaiCheese Cake',
-        image: 'assets/images/elaicheesecake.png',
-        category: 'dessert',
-        label: '',
-        price: '2.99',
-        description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms'
-      }
-    ]
-  )
+const MenuComponent = ({ dishes }) => {
+  const [selectedDish, setSelectedDish] = useState()
+
+  const selectSingleDish = (dish) => {
+    setSelectedDish(dish)
+    console.log(dish.id)
+  }
+
   return (
         <div className='container'>
             <div className='row'>
-            <Media list>
-                {dishes.map((dish) => (
-                   <Dish key={dish.id} dish = {dish} />
-                ))}
-            </Media>
+              {dishes.map((dish) => (
+                <Dish key={dish.id} dish={dish} selectSingleDish={selectSingleDish}/>
+              ))}
+            </div>
+
+            <div className='row'>
+              <div className='col-12 col-md-5 m-1'>
+                {selectedDish ? <RenderSelectedDish dish={selectedDish }/> : <div />}
+              </div>
+
             </div>
         </div>
   )
 }
-
 export default MenuComponent
