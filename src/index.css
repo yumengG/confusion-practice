@@ -16,3 +16,7 @@ code {
   cursor: pointer;
 }
 
+.comment {
+  text-align: left;
+}
+
