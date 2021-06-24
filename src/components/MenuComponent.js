@@ -5,6 +5,7 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap'
 import Dish from './Dish'
+import Comment from './Comment'
 import RenderSelectedDish from './RenderSelectedDish'
 
 const MenuComponent = ({ dishes }) => {
@@ -12,7 +13,6 @@ const MenuComponent = ({ dishes }) => {
 
   const selectSingleDish = (dish) => {
     setSelectedDish(dish)
-    console.log(dish.id)
   }
 
   return (
@@ -25,9 +25,11 @@ const MenuComponent = ({ dishes }) => {
 
             <div className='row'>
               <div className='col-12 col-md-5 m-1'>
-                {selectedDish ? <RenderSelectedDish dish={selectedDish }/> : <div />}
+                {selectedDish ? <RenderSelectedDish dish={selectedDish}/> : <div />}
               </div>
-
+              <div className='col-12 col-md-5 m-1'>
+                {selectedDish ? <Comment dish={selectedDish}/> : <div />}
+              </div>
             </div>
         </div>
   )
