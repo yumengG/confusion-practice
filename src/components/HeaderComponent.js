@@ -1,13 +1,32 @@
-import React from 'react'
-import { Navbar, NavbarBrand, Jumbotron } from 'reactstrap'
+import React, { useState } from 'react'
+import { Navbar, NavbarBrand, Jumbotron, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap'
 
 const Header = () => {
+    const [toggleNav, setToggleNav] = useState(false);
   return (
             <div>
-            <Navbar color="light" light>
+            <Navbar className='navbarcolor' light>
                 <div className='container'>
                     <NavbarBrand href='/'>Ristorante Con Fusion</NavbarBrand>
                 </div>
+                <NavbarToggler onClick={() => {setToggleNav(!toggleNav)}} className='navbarMenuToggler'/>
+                <Collapse isOpen={toggleNav} navbar>
+                    <Nav navbar className='navItemAlign'>
+                        <NavItem>
+                            <NavLink href='/home'> Home</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href='/aboutus'>About Us</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href='/menu'> Menu</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href='/contactus'>Contact Us</NavLink>
+                        </NavItem>
+                    </Nav>
+
+                </Collapse>
             </Navbar>
             <Jumbotron>
                 <div className='container'>
