@@ -68,3 +68,14 @@ address{
 .navbar-dark {
   background-color: #512DA8;
 }
+.navbarMenuToggler {
+  margin-right: 1em;
+}
+.navbarcolor {
+  background-color:#b5a2e6;
+}
+
+.navItemAlign {
+  text-align: left;
+  margin-left: 3em;
+}
