@@ -6,7 +6,6 @@ import {
 } from 'reactstrap'
 import Dish from './Dish'
 const MenuComponent = ({ dishes, selectDish }) => {
-  const [selectedDish, setSelectedDish] = useState()
 
   return (
         <div className='container'>

@@ -2,14 +2,12 @@
 import React from 'react'
 import EachComment from './EachComment'
 
-const Comment = ({ dish }) => {
+const Comment = ({ comment }) => {
   return (
         <div>
             <h3>Comment</h3>
             <br/>
-            {dish.comments.map((comment) => (
-                <EachComment key={comment.id} comment={comment} />
-            ))}
+            <EachComment key={comment.id} comment={comment} />
         </div>
   )
 }
