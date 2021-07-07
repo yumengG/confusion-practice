@@ -6,7 +6,12 @@ import RenderSelectedDish from './RenderSelectedDish'
 import Header from './HeaderComponent'
 import Footer from './FooterComponent'
 import Home from './HomeComponent'
-import { Switch, Route, Redirect } from 'react-router-dom';
+import Dish from './Dish'
+import Contact from './ContactComponent'
+import { COMMENTS } from '../shared/Comments'
+import { LEADERS } from '../shared/Leaders'
+import { PROMOTIONS } from '../shared/Promotions'
+import { Switch, Route, Redirect, useParams} from 'react-router-dom';
 
 const MainComponent = () => {
   const [dishes, setDishes] = useState(DISHES)
@@ -16,6 +21,19 @@ const MainComponent = () => {
     console.log(dish.id)
     setSelectedDish(dish)
   }
+  const SelectComment = () => {
+    let { dishID } = useParams();
+    return (
+        <Comment comment={COMMENTS.filter((comment)=> (comment.id === parseInt(dishID)))[0]} />
+    )
+  }
+
+  const FilterID = () => {
+    let { dishID } = useParams();
+      return (
+          <Dish dish={DISHES.filter((dish)=> (dish.id === parseInt(dishID)))[0]} selectSingleDish={selectDish}/>
+      )
+  }
 
   return (
         <div>
@@ -23,21 +41,28 @@ const MainComponent = () => {
                 <Route exact path='/'>
                     <Header />
                     <Menu dishes={dishes} selectDish={(dish) => selectDish(dish)}/>
-                    <div className='row'>
-                    <div className='col-12 col-md-5 m-1'>
-                        {selectedDishes ? <RenderSelectedDish dish={selectedDishes}/> : <div />}
-                    </div>
-                    <div className='col-12 col-md-5 m-1'>
-                        {selectedDishes ? <Comment dish={selectedDishes}/> : <div />}
-                    </div>
-                    </div>
+                    
                     <Footer />
                 </Route>
                 <Route path='/home'>
-                    <Home />
+                    <Home dish={DISHES[0]} promotion={PROMOTIONS[0]} leader={LEADERS[0]}/>
                 </Route>
                 <Route exact path='/menu'>
                     <Menu dishes={dishes} selectDish={(dish) => selectDish(dish)}/>
+                </Route>
+                <Route path='/menu/:dishID'>
+                    <FilterID />
+                    <div className='row'>
+                        <div className='col-12 col-md-5 m-1'>
+                            {selectedDishes ? <RenderSelectedDish dish={selectedDishes}/> : <div />}
+                        </div>
+                        <div className='col-12 col-md-5 m-1'>
+                            {selectedDishes ? <SelectComment /> : <div />}
+                        </div>
+                    </div>
+                </Route>
+                <Route path='/contactus'>
+                    <Contact />
                 </Route>
             </Switch>
 
