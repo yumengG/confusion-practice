@@ -11,6 +11,7 @@ import Contact from './ContactComponent'
 import { COMMENTS } from '../shared/Comments'
 import { LEADERS } from '../shared/Leaders'
 import { PROMOTIONS } from '../shared/Promotions'
+import AboutUs from './AboutComponent'
 import { Switch, Route, Redirect, useParams} from 'react-router-dom';
 
 const MainComponent = () => {
@@ -41,11 +42,12 @@ const MainComponent = () => {
                 <Route exact path='/'>
                     <Header />
                     <Menu dishes={dishes} selectDish={(dish) => selectDish(dish)}/>
-                    
                     <Footer />
                 </Route>
                 <Route path='/home'>
+                    <Header />
                     <Home dish={DISHES[0]} promotion={PROMOTIONS[0]} leader={LEADERS[0]}/>
+                    <Footer />
                 </Route>
                 <Route exact path='/menu'>
                     <Menu dishes={dishes} selectDish={(dish) => selectDish(dish)}/>
@@ -62,7 +64,14 @@ const MainComponent = () => {
                     </div>
                 </Route>
                 <Route path='/contactus'>
+                    <Header />
                     <Contact />
+                    <Footer />
+                </Route>
+                <Route path='/aboutus'>
+                    <Header />
+                    <AboutUs />
+                    <Footer />
                 </Route>
             </Switch>
 
