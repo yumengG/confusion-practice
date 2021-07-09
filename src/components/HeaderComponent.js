@@ -1,8 +1,20 @@
 import React, { useState } from 'react'
-import { Navbar, NavbarBrand, Jumbotron, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap'
+import { Navbar, NavbarBrand, Jumbotron, NavbarToggler, Collapse, Nav, NavItem, NavLink, Modal, ModalHeader, ModalBody, ModalFooter,
+Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 const Header = () => {
-    const [toggleNav, setToggleNav] = useState(false);
+    const [toggleNav, setToggleNav] = useState(false)
+    const [modal, setmodal] = useState(false)
+    const [userName, setUserName] = useState('')
+
+    const toggle = () => {
+        setmodal(!modal)
+    }
+
+    const addName = (e) => {
+        setUserName(e.target.value)
+    }
+
   return (
             <div>
             <Navbar className='navbarcolor' light>
@@ -24,6 +36,9 @@ const Header = () => {
                         <NavItem>
                             <NavLink href='/contactus'>Contact Us</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink onClick={toggle}>Log in</NavLink>
+                        </NavItem>
                     </Nav>
 
                 </Collapse>
@@ -38,6 +53,23 @@ const Header = () => {
                     </div>
                 </div>
             </Jumbotron>
+            <Modal isOpen={modal} toggle={toggle} >
+                <ModalHeader toggle={toggle}>Log in</ModalHeader>
+                <ModalBody>
+                    <Form>
+                        <FormGroup>
+                            <Label for='UserName'>Username</Label>
+                            <Input type='text' name='name' id='UserName' placeholder='Username' value={userName}
+                            onChange={addName}></Input>
+                        </FormGroup>
+                    </Form>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+                    <Button color="secondary" onClick={toggle}>Cancel</Button>
+                </ModalFooter>
+
+            </Modal>
             </div>
   )
 }
